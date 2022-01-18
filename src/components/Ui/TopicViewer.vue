@@ -27,9 +27,13 @@ export default {
       newTopic: "",
     };
   },
+  created() {
+    this.loadTopics();
+  },
   computed: {
     topics() {
       const data = this.$store.getters["words/topics"];
+      console.log(data);
       const topics = [];
       data.forEach((element) => {
         topics.push({ topic: element.topic, id: element.id });
@@ -46,6 +50,13 @@ export default {
         id: new Date().toISOString(),
         newTopic: this.newTopic,
       });
+    },
+    async loadTopics() {
+      try {
+        await this.$store.dispatch("words/fetchTopics");
+      } catch (error) {
+        this.error = error.message || "someting went wrong";
+      }
     },
   },
 };

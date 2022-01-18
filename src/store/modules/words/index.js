@@ -60,13 +60,51 @@ export default {
         }
     },
     actions: {
-        addNewTopic(context, payload) {
+        async addNewTopic(context, payload) {
             const newTopic = {
-                id: payload.id,
                 topic: payload.newTopic,
-                words: [],
             };
+            const userId = context.rootGetters['auth/userId'];
+            const response = await fetch(`https://flashcard-1607b-default-rtdb.europe-west1.firebasedatabase.app/data/${userId}.json?`, {
+                method: 'POST',
+                body: JSON.stringify(newTopic)
+            })
+            const responseData = await response.json();
+
+            if (!response.ok) {
+                const error = new Error(responseData.message || 'Failed fetch requests')
+                throw error
+            }
             context.commit('addTopic', newTopic)
+
+        },
+        async fetchTopics(context) {
+            const userId = context.rootGetters['auth/userId'];
+
+            const response = await fetch(`https://flashcard-1607b-default-rtdb.europe-west1.firebasedatabase.app/data/${userId}.json?`)
+            const responseData = await response.json();
+
+            if (!response.ok) {
+                const error = new Error(responseData.message || 'Failed fetch requests')
+                throw error
+            }
+            var topics = null;
+            for (const key in responseData) {
+                if (responseData[key].words) {
+                    topics = {
+                        topic: responseData[key].topic,
+                        words: responseData[key].words,
+                        id: key
+                    }
+                } else {
+                    topics = {
+                        topic: responseData[key].topic,
+                        words: [],
+                        id: key
+                    }
+                }
+                context.commit('addTopic', topics)
+            }
         },
         addWord(context, payload) {
             context.commit('addWord', payload)

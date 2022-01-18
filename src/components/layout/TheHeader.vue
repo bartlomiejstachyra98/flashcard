@@ -4,7 +4,7 @@
       <h1>FlashCard</h1>
       <ul>
         <li><router-link to="/answer">Rozwiązuj</router-link></li>
-        <li><a href="/flashcards">Dodaj słówka</a></li>
+        <li><router-link to="/flashcards">Dodaj słówka</router-link></li>
         <li v-if="!isLoggedIn">
           <router-link to="/login">Zaloguj</router-link>
         </li>
