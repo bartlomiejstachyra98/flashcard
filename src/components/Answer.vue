@@ -25,7 +25,6 @@
 
 
 <script>
-import BaseCard from "./Ui/BaseCard.vue";
 import BaseItem from "./Ui/BaseItem.vue";
 import BaseDialog from "./Ui/BaseDialog.vue";
 import WORDS_DATA from "../dummy";
@@ -33,7 +32,7 @@ import WORDS_DATA from "../dummy";
 import { ref, computed } from "vue";
 
 export default {
-  components: { BaseCard, BaseItem, BaseDialog },
+  components: { BaseItem, BaseDialog },
 
   setup() {
     const words = WORDS_DATA;
