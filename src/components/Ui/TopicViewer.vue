@@ -28,12 +28,13 @@ export default {
     };
   },
   created() {
-    this.loadTopics();
+    if (this.topics.length == 0) {
+      this.loadTopics();
+    }
   },
   computed: {
     topics() {
       const data = this.$store.getters["words/topics"];
-      console.log(data);
       const topics = [];
       data.forEach((element) => {
         topics.push({ topic: element.topic, id: element.id });
@@ -47,7 +48,6 @@ export default {
     },
     addNewTopic() {
       this.$store.dispatch("words/addNewTopic", {
-        id: new Date().toISOString(),
         newTopic: this.newTopic,
       });
     },
