@@ -10,10 +10,11 @@
           <button>Dodaj</button>
         </form>
       </div>
-      <div class="DisplayWords" v-for="word in words" :key="word">
-        <p>{{ word.word }}</p>
+      <div class="DisplayWords" v-for="key in wordsData.id" :key="key">
+        <p>{{ wordsData.words[key].word }}</p>
         <p>-</p>
-        <p>{{ word.translation }}</p>
+        <p>{{ wordsData.words[key].translation }}</p>
+        <button @click="deleteWord(key)">Usuń</button>
       </div>
     </div>
   </div>
@@ -27,16 +28,21 @@ export default {
         word: "",
         translation: "",
       },
+      addedCount: 0,
     };
   },
   computed: {
-    words() {
+    wordsData() {
       const data = this.$store.getters["words/topics"];
+      const id = [];
       const topicAndWords = data.find((element) => element.id === this.topic);
+      for (const a in topicAndWords.words) {
+        id.push(a);
+      }
       if (topicAndWords) {
-        return topicAndWords.words;
+        return { words: topicAndWords.words, id: id };
       } else {
-        return null;
+        return "";
       }
     },
   },
@@ -47,7 +53,14 @@ export default {
         word: {
           word: this.newWord.word,
           translation: this.newWord.translation,
+          count: this.addedCount,
         },
+      });
+    },
+    deleteWord(id) {
+      this.$store.dispatch("words/deleteWord", {
+        wordId: id,
+        topicId: this.topic,
       });
     },
   },
