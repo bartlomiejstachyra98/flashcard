@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <base-card v-if="!topic">
+    <topic-viewer :addTopic="false" @select-words="selectTopic"></topic-viewer>
+  </base-card>
   <base-dialog
     :show="!!finalScore"
     title="Gratulacje! Ukończyłeś lekcje!"
@@ -7,7 +9,8 @@
   >
     <p>Twój wynik to: {{ finalScore }}/{{ wordLeft }}</p></base-dialog
   >
-  <base-card class="card">
+
+  <base-card v-if="!!topic" class="card">
     <h2 class="tittle">Podaj tłumaczenie słowa na język angielski</h2>
     <base-item
       class="main"
@@ -19,6 +22,7 @@
 
     <h3 class="translation" v-if="!!answer">Tłumaczenie to: {{ answer }}</h3>
     <h2 class="score">Wynik {{ score }}/{{ wordLeft }}:</h2>
+    <p>{{ x }}</p>
   </base-card>
 </template>
 
@@ -27,70 +31,168 @@
 <script>
 import BaseItem from "./Ui/BaseItem.vue";
 import BaseDialog from "./Ui/BaseDialog.vue";
-import WORDS_DATA from "../dummy";
+import TopicViewer from "./Ui/TopicViewer.vue";
+// import WORDS_DATA from "../dummy";
 
-import { ref, computed } from "vue";
+// import { ref, computed } from "vue";
+// import { useStore } from "vuex";
 
 export default {
-  components: { BaseItem, BaseDialog },
-
-  setup() {
-    const words = WORDS_DATA;
-    const wordLeft = ref(words.length);
-    let activeWord = ref(0);
-    let score = ref(0);
-    const incorrectAnswer = ref("false");
-    const finalScore = ref(null);
-    const answer = ref(false);
-
-    let displayWord = computed(function () {
-      return words[activeWord.value].word;
-    });
-
-    function check(userTranslation) {
-      if (userTranslation === words[activeWord.value].translation) {
-        incorrectAnswer.value = "false";
-        finalScore.value = null;
-        score.value += 1;
-        activeWord.value += 1;
-        answer.value = null;
-        if (activeWord.value >= words.length) {
-          activeWord.value = 0;
-          finalScore.value = score.value;
-          score.value = 0;
-        }
-      } else {
-        incorrectAnswer.value = "true";
-      }
-    }
-
-    function handleError() {
-      finalScore.value = null;
-    }
-
-    function showAnswer() {
-      if (!answer.value) {
-        answer.value = words[activeWord.value].translation;
-      } else {
-        answer.value = "";
-      }
-    }
-
+  components: { BaseItem, BaseDialog, TopicViewer },
+  data() {
     return {
-      words,
-      wordLeft,
-      activeWord,
-      displayWord,
-      score,
-      check,
-      incorrectAnswer,
-      finalScore,
-      handleError,
-      showAnswer,
-      answer,
+      activeWord: 0,
+      userTranslation: "",
+      finalScore: 0,
+      score: 0,
+      incorrectAnswer: false,
+      answer: false,
+      topic: null,
     };
   },
+  computed: {
+    words() {
+      const words = [];
+      const data = this.$store.getters["words/topics"];
+      const topicAndWords = data.find((element) => element.id === this.topic);
+      // console.log(topicAndWords);
+      for (const word in topicAndWords.words) {
+        words.push(topicAndWords.words[word]);
+        console.log(topicAndWords.words[word]);
+      }
+      if (topicAndWords) {
+        return words;
+      } else {
+        return "";
+      }
+      // displayWord.value = words[activeWord.value].word;
+    },
+    displayWord() {
+      return this.words[this.activeWord].word;
+    },
+    wordLeft() {
+      return this.words.length;
+    },
+  },
+  methods: {
+    check(userTranslation) {
+      if (userTranslation === this.words[this.activeWord].translation) {
+        this.incorrectAnswer = "false";
+        this.finalScore = null;
+        this.score += 1;
+        this.activeWord += 1;
+        this.answer = null;
+        userTranslation = null;
+        if (this.activeWord >= this.words.length) {
+          this.activeWord = 0;
+          this.finalScore = this.score;
+          this.score = 0;
+        }
+      } else {
+        this.incorrectAnswer = "true";
+      }
+    },
+    handleError() {
+      this.topic = null;
+      this.finalScore = null;
+    },
+    showAnswer() {
+      // console.log(words);
+      if (!this.answer) {
+        this.answer = this.words[this.activeWord].translation;
+      } else {
+        this.answer = "";
+      }
+    },
+    selectTopic(topic) {
+      this.topic = topic;
+      console.log(this.topic);
+    },
+  },
 };
+
+// export default {
+//   components: { BaseItem, BaseDialog, TopicViewer },
+
+//   setup() {
+//     const store = useStore();
+//     let words = WORDS_DATA;
+//     console.log(words);
+//     const wordLeft = ref(words.length);
+//     let activeWord = ref(0);
+//     let score = ref(0);
+//     const incorrectAnswer = ref("false");
+//     const finalScore = ref(null);
+//     const answer = ref(false);
+
+//     const displayWord = computed(function () {
+//       return words[activeWord.value].word;
+//     });
+
+//     let x = computed(function selectTopic() {
+//       return words;
+//     });
+
+//     function check(userTranslation) {
+//       if (userTranslation === words[activeWord.value].translation) {
+//         incorrectAnswer.value = "false";
+//         finalScore.value = null;
+//         score.value += 1;
+//         activeWord.value += 1;
+//         answer.value = null;
+//         if (activeWord.value >= words.length) {
+//           activeWord.value = 0;
+//           finalScore.value = score.value;
+//           score.value = 0;
+//         }
+//       } else {
+//         incorrectAnswer.value = "true";
+//       }
+//     }
+
+//     function handleError() {
+//       finalScore.value = null;
+//     }
+
+//     function showAnswer() {
+//       console.log(words);
+//       if (!answer.value) {
+//         answer.value = words[activeWord.value].translation;
+//       } else {
+//         answer.value = "";
+//       }
+//     }
+
+//     function selectTopic(topic) {
+//       words = [];
+//       const data = store.getters["words/topics"];
+//       const topicAndWords = data.find((element) => element.id === topic);
+//       console.log(topicAndWords);
+//       for (const word in topicAndWords.words) {
+//         words.push(topicAndWords.words[word]);
+//         console.log(topicAndWords.words[word]);
+//       }
+//       return words;
+//       // displayWord.value = words[activeWord.value].word;
+//     }
+
+//     return {
+//       x,
+//       words,
+//       wordLeft,
+//       activeWord,
+//       displayWord,
+//       score,
+//       check,
+//       incorrectAnswer,
+//       finalScore,
+//       handleError,
+//       showAnswer,
+//       answer,
+//       selectTopic,
+//     };
+//   },
+// };
 </script>
 
 <style scoped>

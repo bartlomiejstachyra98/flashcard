@@ -11,7 +11,7 @@
         {{ topic.topic }}
       </button>
     </div>
-    <div class="addNewTopic">
+    <div v-if="this.addTopic" class="addNewTopic">
       <form @submit.prevent="addNewTopic">
         <input type="text" v-model="newTopic" placeholder="Nowy Temat" />
         <button>Dodaj</button>
@@ -22,6 +22,7 @@
 
 <script>
 export default {
+  props: ["addTopic"],
   data() {
     return {
       newTopic: "",
