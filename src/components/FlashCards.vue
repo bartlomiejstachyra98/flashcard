@@ -3,7 +3,10 @@
     <base-card>
       <div class="flashCard">
         <div class="e1">
-          <topic-viewer @select-words="selectWords"></topic-viewer>
+          <topic-viewer
+            :addTopic="true"
+            @select-words="selectWords"
+          ></topic-viewer>
         </div>
         <div class="e2">
           <words-viewer :topic="this.topic"></words-viewer>

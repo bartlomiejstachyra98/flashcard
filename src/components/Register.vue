@@ -76,7 +76,7 @@ export default {
       },
       formIsValid: true,
       re: /\S+@\S+\.\S+/,
-      isLoading: null,
+      isLoading: false,
       error: null,
     };
   },
