@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state() {
         return {
-            userId: null,
+            userId: 1,
             token: null,
             tokenExpiration: null
         }

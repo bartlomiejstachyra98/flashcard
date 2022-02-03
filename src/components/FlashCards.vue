@@ -2,13 +2,13 @@
   <body>
     <base-card>
       <div class="flashCard">
-        <div class="e1">
+        <div class="topicDisplay">
           <topic-viewer
             :addTopic="true"
             @select-words="selectWords"
           ></topic-viewer>
         </div>
-        <div class="e2">
+        <div class="wordsDisplay">
           <words-viewer :topic="this.topic"></words-viewer>
         </div>
       </div>
@@ -38,20 +38,18 @@ export default {
 .flashCard {
   display: flex;
   height: 60vh;
-  width: 50vw;
   justify-content: center;
+  margin: 0;
 }
-.e1 {
-  background-color: blue;
-  width: 30%;
+.topicDisplay {
+  width: 25%;
   display: flex;
   flex-direction: column;
 }
-.e1 h2 {
-  text-align: center;
-}
-.e2 {
-  background-color: red;
-  width: 70%;
+
+.wordsDisplay {
+  width: 75%;
+  display: flex;
+  justify-content: center;
 }
 </style>

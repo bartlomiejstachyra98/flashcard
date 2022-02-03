@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="desktop-nav">
     <nav>
       <h1>FlashCard</h1>
       <ul>
@@ -12,7 +12,25 @@
           <router-link to="/register">Zarejestruj</router-link>
         </li>
         <li v-if="isLoggedIn">
-          <button @click="logout">Logout</button>
+          <button @click="logout">Wyloguj</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <header class="mobile-nav">
+    <h1>FlashCard</h1>
+    <nav>
+      <ul>
+        <li><router-link to="/answer">Rozwiązuj</router-link></li>
+        <li><router-link to="/flashcards">Dodaj słówka</router-link></li>
+        <li v-if="!isLoggedIn">
+          <router-link to="/login">Zaloguj</router-link>
+        </li>
+        <li v-if="!isLoggedIn">
+          <router-link to="/register">Zarejestruj</router-link>
+        </li>
+        <li v-if="isLoggedIn">
+          <button @click="logout">Wyloguj</button>
         </li>
       </ul>
     </nav>
@@ -41,24 +59,36 @@ export default {
 header {
   width: 100%;
   height: 5rem;
-  background-color: #3d008d;
+  background-color: #b7b7a4;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 2px 1em gray;
 }
 
 header a {
   text-decoration: none;
-  color: #f391e3;
+  color: #004e98;
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border: 1px solid transparent;
+  font-size: 1.2rem;
+}
+header button {
+  color: #004e98;
+  background-color: #b7b7a4;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  font-size: 1.2rem;
 }
 
 a:active,
 a:hover,
-a.router-link-active {
-  border: 1px solid #f391e3;
+a.router-link-active,
+button:active,
+button:hover {
+  cursor: pointer;
+  border: 1px solid #6b705c;
 }
 
 h1 {
@@ -95,5 +125,9 @@ header ul {
 
 li {
   margin: 0 0.5rem;
+}
+
+.mobile-nav {
+  display: none;
 }
 </style>
