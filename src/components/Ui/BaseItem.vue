@@ -8,8 +8,8 @@
         id="translation"
         ref="translation"
       />
-      <button>Dalej</button>
-      <h2 v-if="incorrectAnswer === 'true'">Podaj właściwą odpowiedź</h2>
+      <base-button>Dalej</base-button>
+      <h4 v-if="incorrectAnswer === 'true'">Podaj właściwą odpowiedź</h4>
     </form>
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
 
     function saveInput() {
       context.emit("check", translation.value.value);
+      translation.value.value = "";
     }
     return { saveInput, translation };
   },
@@ -32,12 +33,13 @@ export default {
 
 <style scoped>
 input.invaild {
-  border-color: red;
+  border: solid 2px red;
 }
 
 form {
+  width: 100%;
   display: grid;
-  grid-template-columns: 32vw 8vw;
+  grid-template-columns: 70% 20%;
   grid-gap: 0.5rem;
   justify-content: center;
   grid-template-rows: 3rem 1.5rem;
@@ -45,5 +47,17 @@ form {
 .word {
   grid-column: span 2;
   justify-self: center;
+}
+h4 {
+  grid-column: span 2;
+  justify-self: center;
+  color: red;
+  margin: 0;
+}
+input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: none;
+  margin: 0 0.3rem;
 }
 </style>

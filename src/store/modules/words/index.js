@@ -7,7 +7,7 @@ export default {
     },
     mutations: {
         addTopic(state, payload) {
-            state.data = payload
+            state.data = payload;
         },
         addWord(state, payload) {
             for (var i = 0; i < state.data.length; i++) {
@@ -21,7 +21,9 @@ export default {
         // deleteWord(state, payload) {
         //     for (var i = 0; i < state.data.length; i++) {
         //         if (state.data[i].id == payload.topicId) {
+        //             console.log(payload)
         //             console.log(state.data[i].words);
+        //             state.data[i].words[payload.wordId].remove();
         //         }
         //     }
         //     console.log(state.data);
@@ -36,15 +38,18 @@ export default {
             const response = await fetch(`https://flashcard-1607b-default-rtdb.europe-west1.firebasedatabase.app/data/${userId}.json?`, {
                 method: 'POST',
                 body: JSON.stringify(newTopic)
-            })
+            }).then(setTimeout(() => {
+                context.dispatch('fetchTopics')
+            }, 200))
             const responseData = await response.json();
             if (!response.ok) {
                 const error = new Error(responseData.message || 'Failed fetch requests')
                 throw error
             }
-            newTopic.id = responseData.name;
-            newTopic.words = [];
-            context.commit('addTopic', newTopic)
+            // newTopic.id = responseData.name;
+            // newTopic.words = [];
+            // console.log(newTopic)
+            // context.commit('addTopic', newTopic)
 
         },
         async fetchTopics(context) {
@@ -78,6 +83,16 @@ export default {
                 data.push(topics)
             }
             context.commit('addTopic', data)
+        },
+        async deleteTopic(context, payload) {
+            const userId = context.rootGetters['auth/userId'];
+            await fetch(`https://flashcard-1607b-default-rtdb.europe-west1.firebasedatabase.app/data/${userId}/${payload}.json?`, {
+                method: 'DELETE'
+            }).then(
+                setTimeout(() => {
+                    context.dispatch('fetchTopics')
+                }, 200)
+            )
         },
         async addWord(context, payload) {
             const userId = context.rootGetters['auth/userId'];

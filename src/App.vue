@@ -1,10 +1,14 @@
 <template>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
   <the-header></the-header>
   <main><router-view></router-view></main>
 </template>
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
-
 export default {
   name: "App",
   components: {
@@ -26,5 +30,9 @@ html {
 
 body {
   margin: 0;
+  background-color: #ffe8d6;
+}
+h1 {
+  color: #004e98;
 }
 </style>

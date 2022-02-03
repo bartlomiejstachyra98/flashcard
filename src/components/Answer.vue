@@ -1,7 +1,12 @@
 <template>
-  <base-card v-if="!topic">
-    <topic-viewer :addTopic="false" @select-words="selectTopic"></topic-viewer>
-  </base-card>
+  <div>
+    <base-card id="select_topic" v-if="!topic">
+      <topic-viewer
+        :addTopic="false"
+        @select-words="selectTopic"
+      ></topic-viewer>
+    </base-card>
+  </div>
   <base-dialog
     :show="!!finalScore"
     title="Gratulacje! Ukończyłeś lekcje!"
@@ -9,33 +14,29 @@
   >
     <p>Twój wynik to: {{ finalScore }}/{{ wordLeft }}</p></base-dialog
   >
-
-  <base-card v-if="!!topic" class="card">
-    <h2 class="tittle">Podaj tłumaczenie słowa na język angielski</h2>
-    <base-item
-      class="main"
-      :incorrectAnswer="incorrectAnswer"
-      :words="displayWord"
-      @check="check"
-    ></base-item>
-    <button class="button" @click="showAnswer">Pokaż tłumaczenie</button>
-
-    <h3 class="translation" v-if="!!answer">Tłumaczenie to: {{ answer }}</h3>
-    <h2 class="score">Wynik {{ score }}/{{ wordLeft }}:</h2>
-    <p>{{ x }}</p>
-  </base-card>
+  <div>
+    <base-card v-if="!!topic" id="card">
+      <h2 class="tittle">Podaj tłumaczenie słowa na język angielski</h2>
+      <base-item
+        class="main"
+        :incorrectAnswer="incorrectAnswer"
+        :words="displayWord"
+        @check="check"
+      ></base-item>
+      <base-button class="button" @click="showAnswer"
+        >Pokaż tłumaczenie</base-button
+      >
+      <h3 class="translation">{{ answer }}</h3>
+      <h2 class="score">Wynik {{ score }}/{{ wordLeft }}:</h2>
+      <p>{{ x }}</p>
+    </base-card>
+  </div>
 </template>
-
-
 
 <script>
 import BaseItem from "./Ui/BaseItem.vue";
 import BaseDialog from "./Ui/BaseDialog.vue";
 import TopicViewer from "./Ui/TopicViewer.vue";
-// import WORDS_DATA from "../dummy";
-
-// import { ref, computed } from "vue";
-// import { useStore } from "vuex";
 
 export default {
   components: { BaseItem, BaseDialog, TopicViewer },
@@ -46,8 +47,8 @@ export default {
       finalScore: 0,
       score: 0,
       incorrectAnswer: false,
-      answer: false,
-      topic: null,
+      answer: "",
+      topic: "",
     };
   },
   computed: {
@@ -55,7 +56,6 @@ export default {
       const words = [];
       const data = this.$store.getters["words/topics"];
       const topicAndWords = data.find((element) => element.id === this.topic);
-      // console.log(topicAndWords);
       for (const word in topicAndWords.words) {
         words.push(topicAndWords.words[word]);
         console.log(topicAndWords.words[word]);
@@ -65,7 +65,6 @@ export default {
       } else {
         return "";
       }
-      // displayWord.value = words[activeWord.value].word;
     },
     displayWord() {
       return this.words[this.activeWord].word;
@@ -97,9 +96,9 @@ export default {
       this.finalScore = null;
     },
     showAnswer() {
-      // console.log(words);
       if (!this.answer) {
-        this.answer = this.words[this.activeWord].translation;
+        this.answer =
+          "Tłumaczenie to: " + this.words[this.activeWord].translation;
       } else {
         this.answer = "";
       }
@@ -110,93 +109,14 @@ export default {
     },
   },
 };
-
-// export default {
-//   components: { BaseItem, BaseDialog, TopicViewer },
-
-//   setup() {
-//     const store = useStore();
-//     let words = WORDS_DATA;
-//     console.log(words);
-//     const wordLeft = ref(words.length);
-//     let activeWord = ref(0);
-//     let score = ref(0);
-//     const incorrectAnswer = ref("false");
-//     const finalScore = ref(null);
-//     const answer = ref(false);
-
-//     const displayWord = computed(function () {
-//       return words[activeWord.value].word;
-//     });
-
-//     let x = computed(function selectTopic() {
-//       return words;
-//     });
-
-//     function check(userTranslation) {
-//       if (userTranslation === words[activeWord.value].translation) {
-//         incorrectAnswer.value = "false";
-//         finalScore.value = null;
-//         score.value += 1;
-//         activeWord.value += 1;
-//         answer.value = null;
-//         if (activeWord.value >= words.length) {
-//           activeWord.value = 0;
-//           finalScore.value = score.value;
-//           score.value = 0;
-//         }
-//       } else {
-//         incorrectAnswer.value = "true";
-//       }
-//     }
-
-//     function handleError() {
-//       finalScore.value = null;
-//     }
-
-//     function showAnswer() {
-//       console.log(words);
-//       if (!answer.value) {
-//         answer.value = words[activeWord.value].translation;
-//       } else {
-//         answer.value = "";
-//       }
-//     }
-
-//     function selectTopic(topic) {
-//       words = [];
-//       const data = store.getters["words/topics"];
-//       const topicAndWords = data.find((element) => element.id === topic);
-//       console.log(topicAndWords);
-//       for (const word in topicAndWords.words) {
-//         words.push(topicAndWords.words[word]);
-//         console.log(topicAndWords.words[word]);
-//       }
-//       return words;
-//       // displayWord.value = words[activeWord.value].word;
-//     }
-
-//     return {
-//       x,
-//       words,
-//       wordLeft,
-//       activeWord,
-//       displayWord,
-//       score,
-//       check,
-//       incorrectAnswer,
-//       finalScore,
-//       handleError,
-//       showAnswer,
-//       answer,
-//       selectTopic,
-//     };
-//   },
-// };
 </script>
 
 <style scoped>
-.card {
+#select_topic {
+  width: 40vw;
+  height: 50vh;
+}
+#card {
   display: grid;
   grid-template-areas:
     "title title"
@@ -204,17 +124,22 @@ export default {
     "button translation"
     "score score";
   height: 40vh;
-  width: 100%;
+  width: 40vw;
+  grid-template-columns: 50% 50%;
+  grid-row-gap: 1rem;
 }
 .tittle {
   grid-area: title;
   align-self: center;
   justify-self: center;
+  margin-bottom: 0;
 }
 .main {
   grid-area: main;
   align-self: center;
   justify-self: center;
+  width: 100%;
+  margin: 0;
 }
 .button {
   grid-area: button;
@@ -225,6 +150,8 @@ export default {
   grid-area: translation;
   align-self: center;
   justify-self: center;
+  padding: 0;
+  margin: 0;
 }
 .score {
   grid-area: score;

@@ -5,49 +5,47 @@
   <base-dialog :show="isLoading" title="Rejestracja..." fixed>
     <p>Rejestracja trwa, proszę czekać</p>
   </base-dialog>
-  <base-card
+  <base-card id="baseCard"
     ><h1>Tworzenie konta FlashCard</h1>
     <h2>Dołącz do nas juz dzisiaj!</h2>
     <form @submit.prevent="submitRegister">
-      <div id="name">
-        <input
-          placeholder="Imie"
-          :class="{ invalid: !name.isVaild }"
-          v-model.trim="name.val"
-          type="text"
-        />
-        <p v-if="!name.isVaild">Imię nie może być puste</p>
-      </div>
-      <div id="email">
-        <input
-          placeholder="Email"
-          v-model.trim="email.val"
-          :class="{ invalid: !email.isVaild }"
-          type="text"
-        />
-        <p v-if="!email.isVaild">Proszę podać właściwy e-mail</p>
-      </div>
-      <div id="password">
-        <input
-          placeholder="Hasło"
-          :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
-          v-model.trim="password.val"
-          type="password"
-        />
-        <p v-if="!password.isVaild">
-          Hasło powinno zawierać więcej niż 6 znaków
-        </p>
-      </div>
-      <div id="replypassword">
-        <input
-          placeholder="Powtórz hasło"
-          :class="{ invalid: !passwordreply.isVaild }"
-          v-model.trim="passwordreply.val"
-          type="password"
-        />
-        <p v-if="!passwordreply.isVaild">Hasła muszą być identyczne</p>
-      </div>
-      <button id="confirm">Zarejestruj</button>
+      <input
+        placeholder="Imie"
+        :class="{ invalid: !name.isVaild }"
+        v-model.trim="name.val"
+        type="text"
+        id="name"
+      />
+      <p id="falseName" v-if="!name.isVaild">Imię nie może być puste</p>
+      <input
+        id="email"
+        placeholder="Email"
+        v-model.trim="email.val"
+        :class="{ invalid: !email.isVaild }"
+        type="text"
+      />
+      <p id="falseEmail" v-if="!email.isVaild">Proszę podać właściwy e-mail</p>
+      <input
+        id="password"
+        placeholder="Hasło"
+        :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
+        v-model.trim="password.val"
+        type="password"
+      />
+      <p id="falsePassword" v-if="!password.isVaild">
+        Hasło powinno zawierać więcej niż 6 znaków
+      </p>
+      <input
+        id="replypassword"
+        placeholder="Powtórz hasło"
+        :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
+        v-model.trim="passwordreply.val"
+        type="password"
+      />
+      <p id="falsePassword" v-if="!passwordreply.isVaild">
+        Hasła muszą być identyczne
+      </p>
+      <base-button id="confirm">Zarejestruj</base-button>
     </form>
   </base-card>
 </template>
@@ -134,36 +132,58 @@ export default {
 </script>
 
 <style scoped>
+#baseCard {
+  width: 40vw;
+}
 form {
   display: grid;
   grid-template-areas:
     "name email"
+    "falseName falseEmail"
     "password replypassword"
-    ". confirm";
+    "falsePassword falsePassword"
+    "confirm confirm";
   grid-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  grid-template-rows: 2rem;
 }
 #name {
   grid-area: name;
-  width: 60%;
+}
+#falseName {
+  grid-area: falseName;
 }
 #email {
   grid-area: email;
-  width: 60%;
+}
+#falseEmail {
+  grid-area: falseEmail;
 }
 #password {
   grid-area: password;
-  width: 60%;
 }
 #replypassword {
   grid-area: replypassword;
-  width: 60%;
+}
+#falsePassword {
+  grid-area: falsePassword;
 }
 #confirm {
   grid-area: confirm;
-  width: 25%;
-  justify-self: flex-end;
+  width: 8rem;
+  justify-self: center;
+  min-width: 5rem;
+  grid-column: span 2;
 }
+
 .invalid {
   border: 1px solid red;
+}
+input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: none;
+  margin: 0 0.3rem;
 }
 </style>
