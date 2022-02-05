@@ -2,16 +2,29 @@
   <div class="topic_viewer">
     <div class="top">
       <h1>Tematy:</h1>
-      <div class="topic" v-for="topic in topics" :key="topic.id">
-        <button class="topicButton" @click="selectWords(topic.id)">
-          <p>{{ topic.topic }}</p>
-          <base-button
-            v-if="this.addTopic"
-            class="fa fa-trash"
-            @click="deleteTopic(topic.id)"
-          ></base-button>
-        </button>
+      <div class="desktop_topicDisplay">
+        <div class="topic" v-for="topic in topics" :key="topic.id">
+          <button class="topicButton" @click="selectWords(topic.id)">
+            <p>{{ topic.topic }}</p>
+            <base-button
+              v-if="this.addTopic"
+              class="fa fa-trash"
+              @click="deleteTopic(topic.id)"
+            ></base-button>
+          </button>
+        </div>
       </div>
+      <select
+        class="mobile_topicDisplay"
+        name="topics"
+        @change="selectWords(false)"
+        id="topic"
+      >
+        <option default>Wybierz Temat</option>
+        <option v-for="topic in topics" :key="topic.id" :value="topic.id">
+          {{ topic.topic }}
+        </option>
+      </select>
     </div>
     <div v-if="this.addTopic" class="addNewTopic">
       <form @submit.prevent="addNewTopic">
@@ -47,7 +60,11 @@ export default {
   },
   methods: {
     selectWords(topic) {
-      this.$emit("select-words", topic);
+      if (topic == false) {
+        this.$emit("select-words", event.target.value);
+      } else {
+        this.$emit("select-words", topic);
+      }
     },
     addNewTopic() {
       this.$store.dispatch("words/addNewTopic", {
@@ -69,13 +86,8 @@ export default {
 </script>
 
 <style scoped>
-.top {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
+.mobile_topicDisplay {
+  display: none;
 }
 .topic_viewer {
   display: flex;
@@ -84,29 +96,35 @@ export default {
   align-items: center;
   height: 100%;
   justify-content: space-between;
-  position: relative;
-  overflow: hidden;
+  /* position: relative; */
 }
-.addNewTopic {
-  margin: 0.5rem;
-  width: 100%;
-  height: 2rem;
-}
-.addNewTopic form {
+.top {
   width: 100%;
   display: flex;
-  flex-flow: nowrap;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  /* position: relative; */
+  overflow: auto;
 }
-.addNewTopic input {
-  width: 70%;
-  height: 1.8rem;
-  border-radius: 5px;
-  border: none;
-  margin: 0 0.3rem;
+.desktop_topicDisplay {
+  width: 100%;
+  overflow: auto;
 }
-.addNewTopic button {
-  width: 30%;
+.desktop_topicDisplay::-webkit-scrollbar {
+  width: 8px;
 }
+
+.desktop_topicDisplay::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.desktop_topicDisplay::-webkit-scrollbar-thumb {
+  background-color: #90918e;
+  border-radius: 100px;
+}
+
 .topic {
   width: 100%;
 }
@@ -129,18 +147,48 @@ export default {
 .topicButton:hover {
   background-color: #ffae03;
 }
-
-.top::-webkit-scrollbar {
-  width: 8px;
+.addNewTopic {
+  margin: 0.5rem;
+  width: 100%;
+  height: 2rem;
+}
+.addNewTopic form {
+  width: 100%;
+  display: flex;
+  flex-flow: nowrap;
+}
+.addNewTopic input {
+  width: 70%;
+  height: 1.8rem;
+  border-radius: 5px;
+  border: none;
+  margin: 0 0.3rem;
+}
+.addNewTopic button {
+  width: 30%;
 }
 
-.top::-webkit-scrollbar-track {
-  background-color: #e4e4e4;
-  border-radius: 100px;
-}
-
-.top::-webkit-scrollbar-thumb {
-  background-color: #90918e;
-  border-radius: 100px;
+@media (max-width: 45rem) {
+  .topic {
+    display: none;
+    margin: 0 2rem;
+  }
+  .mobile_topicDisplay {
+    display: unset;
+  }
+  #topic {
+    width: 100%;
+  }
+  select {
+    height: 2rem;
+    border-radius: 5px;
+    border: none;
+  }
+  .addNewTopic button {
+    height: 1.8rem;
+  }
+  .addNewTopic input {
+    margin-left: 0;
+  }
 }
 </style>

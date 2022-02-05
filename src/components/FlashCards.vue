@@ -1,6 +1,6 @@
 <template>
   <body>
-    <base-card>
+    <base-card id="card">
       <div class="flashCard">
         <div class="topicDisplay">
           <topic-viewer
@@ -51,5 +51,23 @@ export default {
   width: 75%;
   display: flex;
   justify-content: center;
+}
+@media (max-width: 45rem) {
+  #card {
+    width: 100vw;
+    height: calc(100vh-5rem);
+    overflow: auto;
+  }
+  .flashCard {
+    justify-content: unset;
+    flex-flow: column;
+    align-items: center;
+  }
+  .wordsDisplay {
+    width: 100%;
+  }
+  .topicDisplay {
+    width: 100%;
+  }
 }
 </style>

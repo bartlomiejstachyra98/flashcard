@@ -13,4 +13,14 @@
   background-color: #ddbea9;
   min-width: 600px;
 }
+@media (max-width: 45rem) {
+  .card {
+    margin: 0;
+    width: 0;
+    height: 100vh;
+    max-width: 45rem;
+    min-width: 0;
+    border-radius: 0;
+  }
+}
 </style>

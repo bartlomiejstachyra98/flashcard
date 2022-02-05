@@ -1,17 +1,15 @@
 <template>
-  <div>
-    <form @submit.prevent="saveInput">
-      <h3 class="word">{{ words }}</h3>
-      <input
-        :class="{ invaild: incorrectAnswer === 'true' }"
-        type="text"
-        id="translation"
-        ref="translation"
-      />
-      <base-button>Dalej</base-button>
-      <h4 v-if="incorrectAnswer === 'true'">Podaj właściwą odpowiedź</h4>
-    </form>
-  </div>
+  <form @submit.prevent="saveInput">
+    <h3 class="word">{{ words }}</h3>
+    <input
+      :class="{ invaild: incorrectAnswer === 'true' }"
+      type="text"
+      id="translation"
+      ref="translation"
+    />
+    <base-button>Dalej</base-button>
+    <h4 v-if="incorrectAnswer === 'true'">Podaj właściwą odpowiedź</h4>
+  </form>
 </template>
 
 <script>

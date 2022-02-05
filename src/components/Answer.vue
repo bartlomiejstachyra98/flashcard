@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <base-card id="select_topic" v-if="!topic">
-      <topic-viewer
-        :addTopic="false"
-        @select-words="selectTopic"
-      ></topic-viewer>
-    </base-card>
-  </div>
+  <base-card id="select_topic" v-if="!topic">
+    <topic-viewer :addTopic="false" @select-words="selectTopic"></topic-viewer>
+  </base-card>
+
   <base-dialog
     :show="!!finalScore"
     title="Gratulacje! Ukończyłeś lekcje!"
@@ -14,23 +10,21 @@
   >
     <p>Twój wynik to: {{ finalScore }}/{{ wordLeft }}</p></base-dialog
   >
-  <div>
-    <base-card v-if="!!topic" id="card">
-      <h2 class="tittle">Podaj tłumaczenie słowa na język angielski</h2>
-      <base-item
-        class="main"
-        :incorrectAnswer="incorrectAnswer"
-        :words="displayWord"
-        @check="check"
-      ></base-item>
-      <base-button class="button" @click="showAnswer"
-        >Pokaż tłumaczenie</base-button
-      >
-      <h3 class="translation">{{ answer }}</h3>
-      <h2 class="score">Wynik {{ score }}/{{ wordLeft }}:</h2>
-      <p>{{ x }}</p>
-    </base-card>
-  </div>
+
+  <base-card v-if="!!topic" id="card">
+    <h2 class="tittle">Podaj tłumaczenie słowa na język angielski</h2>
+    <base-item
+      class="main"
+      :incorrectAnswer="incorrectAnswer"
+      :words="displayWord"
+      @check="check"
+    ></base-item>
+    <base-button class="button" @click="showAnswer"
+      >Pokaż tłumaczenie</base-button
+    >
+    <h3 class="translation">{{ answer }}</h3>
+    <h2 class="score">Wynik {{ score }}/{{ wordLeft }}:</h2>
+  </base-card>
 </template>
 
 <script>
@@ -112,6 +106,12 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 45rem) {
+  #select_topic {
+    width: 43rem;
+  }
+}
+
 #select_topic {
   width: 40vw;
   height: 50vh;
@@ -132,6 +132,7 @@ export default {
   grid-area: title;
   align-self: center;
   justify-self: center;
+  text-align: center;
   margin-bottom: 0;
 }
 .main {
@@ -157,5 +158,23 @@ export default {
   grid-area: score;
   align-self: center;
   justify-self: center;
+}
+@media (max-width: 45rem) {
+  #select_topic {
+    width: 100%;
+    height: 100vh;
+  }
+  #card {
+    width: 100%;
+    height: calc(100vh - 5rem);
+    grid-row-gap: 0;
+    grid-template-rows: 30% 1fr 1fr 1fr;
+  }
+  .button {
+    margin-top: auto;
+  }
+  .translation {
+    margin-top: auto;
+  }
 }
 </style>

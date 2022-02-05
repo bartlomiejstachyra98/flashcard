@@ -138,4 +138,17 @@ input {
   background-color: #90918e;
   border-radius: 100px;
 }
+
+@media (max-width: 45rem) {
+  .addingWords {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .word {
+    width: 30vw;
+  }
+}
 </style>

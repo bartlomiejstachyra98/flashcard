@@ -186,4 +186,16 @@ input {
   border: none;
   margin: 0 0.3rem;
 }
+
+@media (max-width: 45rem) {
+  #baseCard {
+    width: 100%;
+    /* justify-content: center; */
+    margin: 0;
+    height: calc(100vh - 5rem);
+  }
+  input {
+    width: 40vw;
+  }
+}
 </style>
