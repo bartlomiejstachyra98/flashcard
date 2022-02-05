@@ -2,12 +2,12 @@
   <base-dialog
     :show="isLoading"
     @close="handleError"
-    title="Rejestracja..."
+    title="Logowanie..."
     fixed
   >
-    <p>Rejestracja trwa, proszę czekać</p>
+    <p>Logowanie trwa, proszę czekać</p>
   </base-dialog>
-  <base-dialog :show="true" @close="handleError">
+  <base-dialog :show="display" @close="handleError">
     <h1>Logowanie</h1>
     <form @submit.prevent="login">
       <div id="email">
@@ -30,6 +30,29 @@
       <base-button id="confirm">Zaloguj</base-button>
     </form>
   </base-dialog>
+  <div class="mobile_login">
+    <h1>Logowanie</h1>
+    <form @submit.prevent="login">
+      <div id="email">
+        <input
+          placeholder="Email"
+          v-model.trim="email"
+          :class="{ invalid: !!error }"
+          type="text"
+        />
+      </div>
+      <div id="password">
+        <input
+          placeholder="Hasło"
+          :class="{ invalid: !!error }"
+          v-model.trim="password"
+          type="password"
+        />
+      </div>
+      <p id="error" v-if="!!error">{{ error }}</p>
+      <base-button id="confirm">Zaloguj</base-button>
+    </form>
+  </div>
 </template>
 <script>
 import BaseDialog from "./Ui/BaseDialog.vue";
@@ -42,6 +65,15 @@ export default {
       isLoading: null,
       error: null,
     };
+  },
+  computed: {
+    display() {
+      if (window.innerWidth < 720) {
+        return false;
+      } else {
+        return true;
+      }
+    },
   },
   methods: {
     async login() {
@@ -80,11 +112,11 @@ form {
 }
 #email {
   grid-area: email;
-  width: 60%;
+  width: 40%;
 }
 #password {
   grid-area: password;
-  width: 60%;
+  width: 40%;
 }
 #confirm {
   grid-area: confirm;
@@ -108,5 +140,32 @@ input {
   border: none;
   margin: 0 0.3rem;
   text-align: center;
+}
+.mobile_login {
+  display: none;
+}
+
+@media (max-width: 45rem) {
+  .mobile_login {
+    display: block;
+    background-color: #ddbea9;
+    width: 100vw;
+    padding: 1px;
+    height: calc(100vh - 5rem);
+  }
+  input {
+    width: 40vw;
+  }
+  #confirm {
+    width: auto;
+    grid-column: span 2;
+    justify-self: center;
+  }
+  h1 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
+    text-align: center;
+  }
 }
 </style>
