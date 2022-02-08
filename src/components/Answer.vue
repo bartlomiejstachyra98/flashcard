@@ -10,9 +10,12 @@
   >
     <p>Twój wynik to: {{ finalScore }}/{{ wordLeft }}</p></base-dialog
   >
-
-  <base-card v-if="!!topic" id="card">
-    <h2 class="tittle">Podaj tłumaczenie słowa na język angielski</h2>
+  <base-card id="withoutWords" v-if="!!topic && !!words.length == 0">
+    <h1>Brak fiszek w wybranym temacie!</h1>
+    <base-button @click="redirect">Dodaj Słowa</base-button>
+  </base-card>
+  <base-card v-if="!!topic && !words.length == 0" id="card">
+    <h2 class="title">Podaj tłumaczenie słowa na język angielski</h2>
     <base-item
       class="main"
       :incorrectAnswer="incorrectAnswer"
@@ -99,6 +102,9 @@ export default {
     selectTopic(topic) {
       this.topic = topic;
     },
+    redirect() {
+      this.$router.push("/flashcards");
+    },
   },
 };
 </script>
@@ -126,7 +132,7 @@ export default {
   grid-template-columns: 50% 50%;
   grid-row-gap: 1rem;
 }
-.tittle {
+.title {
   grid-area: title;
   align-self: center;
   text-align: center;
@@ -152,7 +158,17 @@ export default {
   align-self: center;
   justify-self: center;
 }
+#withoutWords {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  align-items: center;
+}
 @media (max-width: 45rem) {
+  #withoutWords {
+    width: 100%;
+    height: calc(100vh - 5rem);
+  }
   #select_topic {
     width: 100%;
     height: 100vh;

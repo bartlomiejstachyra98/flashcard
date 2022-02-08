@@ -50,10 +50,15 @@ export default {
                 const error = new Error(responseData.message);
                 throw error
             }
+
             context.commit('setUser', {
                 token: responseData.idToken,
                 userId: responseData.localId,
             })
+
+            localStorage.setItem('token', responseData.idToken);
+            localStorage.setItem('userId', responseData.localId);
+
         },
         logout(context) {
             localStorage.removeItem('token');
