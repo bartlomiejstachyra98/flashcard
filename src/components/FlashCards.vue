@@ -38,19 +38,13 @@ export default {
 .flashCard {
   display: flex;
   height: 60vh;
-  justify-content: center;
-  margin: 0;
 }
 .topicDisplay {
   width: 25%;
-  display: flex;
-  flex-direction: column;
 }
 
 .wordsDisplay {
   width: 75%;
-  display: flex;
-  justify-content: center;
 }
 @media (max-width: 45rem) {
   #card {

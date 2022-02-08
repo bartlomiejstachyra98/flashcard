@@ -52,7 +52,6 @@ export default {
       const topicAndWords = data.find((element) => element.id === this.topic);
       for (const word in topicAndWords.words) {
         words.push(topicAndWords.words[word]);
-        console.log(topicAndWords.words[word]);
       }
       if (topicAndWords) {
         return words;
@@ -99,7 +98,6 @@ export default {
     },
     selectTopic(topic) {
       this.topic = topic;
-      console.log(this.topic);
     },
   },
 };
@@ -131,16 +129,12 @@ export default {
 .tittle {
   grid-area: title;
   align-self: center;
-  justify-self: center;
   text-align: center;
   margin-bottom: 0;
 }
 .main {
   grid-area: main;
   align-self: center;
-  justify-self: center;
-  width: 100%;
-  margin: 0;
 }
 .button {
   grid-area: button;
@@ -151,7 +145,6 @@ export default {
   grid-area: translation;
   align-self: center;
   justify-self: center;
-  padding: 0;
   margin: 0;
 }
 .score {
@@ -167,14 +160,8 @@ export default {
   #card {
     width: 100%;
     height: calc(100vh - 5rem);
-    grid-row-gap: 0;
-    grid-template-rows: 30% 1fr 1fr 1fr;
-  }
-  .button {
-    margin-top: auto;
-  }
-  .translation {
-    margin-top: auto;
+    display: flex;
+    flex-flow: column;
   }
 }
 </style>

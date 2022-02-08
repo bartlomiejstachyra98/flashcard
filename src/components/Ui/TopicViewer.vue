@@ -3,7 +3,7 @@
     <div class="top">
       <h1>Tematy:</h1>
       <div class="desktop_topicDisplay">
-        <div class="topic" v-for="topic in topics" :key="topic.id">
+        <div :class="display" v-for="topic in topics" :key="topic.id">
           <button class="topicButton" @click="selectWords(topic.id)">
             <p>{{ topic.topic }}</p>
             <base-button
@@ -14,17 +14,26 @@
           </button>
         </div>
       </div>
-      <select
-        class="mobile_topicDisplay"
-        name="topics"
-        @change="selectWords(false)"
-        id="topic"
-      >
-        <option default>Wybierz Temat</option>
-        <option v-for="topic in topics" :key="topic.id" :value="topic.id">
-          {{ topic.topic }}
-        </option>
-      </select>
+      <div class="mobile_topicDisplay">
+        <select
+          class="topic_select"
+          v-if="this.addTopic"
+          name="topics"
+          @change="selectWords(false)"
+          id="topic"
+          v-model="selectedTopic"
+        >
+          <option default>Wybierz Temat</option>
+          <option v-for="topic in topics" :key="topic.id" :value="topic.id">
+            {{ topic.topic }}
+          </option>
+        </select>
+        <base-button
+          v-if="this.addTopic"
+          class="fa fa-trash"
+          @click="deleteTopic(selectedTopic)"
+        ></base-button>
+      </div>
     </div>
     <div v-if="this.addTopic" class="addNewTopic">
       <form @submit.prevent="addNewTopic">
@@ -41,6 +50,7 @@ export default {
   data() {
     return {
       newTopic: "",
+      selectedTopic: "Wybierz Temat",
     };
   },
   created() {
@@ -56,6 +66,13 @@ export default {
         topics.push({ topic: data[key].topic, id: data[key].id });
       }
       return topics;
+    },
+    display() {
+      if (window.innerWidth < 720 && this.addTopic) {
+        return "topic";
+      } else {
+        return "answer_topicDisplay";
+      }
     },
   },
   methods: {
@@ -92,14 +109,11 @@ export default {
 .topic_viewer {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
   height: 100%;
   justify-content: space-between;
   /* position: relative; */
 }
 .top {
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -136,10 +150,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0;
   border-radius: 5px;
   border: 2px solid #bfd3c1;
-  text-justify: center;
   color: #004e98;
   font-size: 1.1rem;
   padding: 0 0 0 0.5rem;
@@ -153,13 +165,11 @@ export default {
   height: 2rem;
 }
 .addNewTopic form {
-  width: 100%;
   display: flex;
   flex-flow: nowrap;
 }
 .addNewTopic input {
   width: 70%;
-  height: 1.8rem;
   border-radius: 5px;
   border: none;
   margin: 0 0.3rem;
@@ -173,22 +183,34 @@ export default {
     display: none;
     margin: 0 2rem;
   }
-  .mobile_topicDisplay {
-    display: unset;
-  }
-  #topic {
-    width: 100%;
-  }
-  select {
+  .topic_select {
     height: 2rem;
     border-radius: 5px;
     border: none;
+    width: 80%;
+    margin: 0 0.5rem;
   }
+  .answer_topicDisplay {
+    display: unset;
+    margin: 0;
+  }
+  .mobile_topicDisplay {
+    display: unset;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .mobile_topicDisplay button {
+    height: 2rem;
+  }
+
   .addNewTopic button {
     height: 1.8rem;
+    width: auto;
   }
   .addNewTopic input {
     margin-left: 0;
+    width: 80%;
   }
 }
 </style>

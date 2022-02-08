@@ -60,14 +60,13 @@ export default {
 }
 
 dialog {
+  -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   position: fixed;
   top: 20vh;
-  left: 10%;
-  width: 80%;
   z-index: 100;
   border-radius: 12px;
   border: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -77,7 +76,6 @@ dialog {
 header {
   background-color: #b7b7a4;
   color: white;
-  width: 100%;
   padding: 1rem;
 }
 
@@ -102,4 +100,27 @@ menu {
     width: 40rem;
   }
 }
+
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
 </style>
+
+

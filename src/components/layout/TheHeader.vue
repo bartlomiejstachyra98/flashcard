@@ -87,12 +87,9 @@ export default {
 
 <style scoped>
 header {
-  width: 100%;
   height: 5rem;
   background-color: #b7b7a4;
   display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0 2px 1em gray;
 }
 
@@ -121,10 +118,6 @@ button:hover {
   border: 1px solid #6b705c;
 }
 
-h1 {
-  margin: 0;
-}
-
 h1 a:hover,
 h1 a:active,
 h1 a.router-link-active {
@@ -142,7 +135,6 @@ header nav {
 header ul {
   list-style: none;
   margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,6 +162,7 @@ li {
 
   header ul {
     flex-direction: column;
+    padding: 0;
   }
 
   .open {
@@ -186,6 +179,7 @@ li {
     z-index: 100;
     position: sticky;
     top: 0;
+    align-items: center;
   }
   .mobile-nav nav {
     display: block;
@@ -193,7 +187,6 @@ li {
     z-index: 101;
     top: 0;
     left: 0;
-    background: rgb(2, 0, 36);
     background: linear-gradient(
       90deg,
       rgba(2, 0, 36, 1) 0%,
@@ -204,6 +197,9 @@ li {
     height: 100vh;
     box-shadow: 6px 0 20px 0 #292828;
     border-radius: 0 12px 12px 0;
+    -webkit-animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+    animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
   li {
     text-justify: center;
@@ -233,6 +229,26 @@ li {
   }
   h1 a {
     display: none;
+  }
+}
+@-webkit-keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100pz);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
   }
 }
 </style>

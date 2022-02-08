@@ -2,16 +2,14 @@ export default {
     namespaced: true,
     state() {
         return {
-            userId: 1,
+            userId: null,
             token: null,
-            tokenExpiration: null
         }
     },
     mutations: {
         setUser(state, payload) {
             state.token = payload.token;
             state.userId = payload.userId;
-            state.tokenExpiration = payload.tokenExpiration;
         }
     },
     actions: {
@@ -29,10 +27,13 @@ export default {
                 const error = new Error(responseData.message);
                 throw error
             }
+
+            localStorage.setItem('token', responseData.idToken);
+            localStorage.setItem('userId', responseData.localId);
+
             context.commit('setUser', {
                 token: responseData.idToken,
                 userId: responseData.localId,
-                tokenExpiration: responseData.expiresIn
             })
         },
         async register(context, payload) {
@@ -52,14 +53,15 @@ export default {
             context.commit('setUser', {
                 token: responseData.idToken,
                 userId: responseData.localId,
-                tokenExpiration: responseData.expiresIn
             })
         },
         logout(context) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId')
+
             context.commit('setUser', {
                 token: null,
                 userId: null,
-                tokenExpiration: null
             })
         }
     },

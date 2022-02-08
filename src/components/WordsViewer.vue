@@ -84,17 +84,13 @@ export default {
 .WordsInTopic {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
   position: relative;
   overflow: hidden;
   align-items: center;
 }
 
 .addingWords {
-  display: flex;
   margin: 1rem;
-  align-items: center;
 }
 .addingWords button {
   min-width: 2rem;
@@ -104,9 +100,7 @@ export default {
 }
 .DisplayWords {
   display: flex;
-  margin: 1rem;
   align-items: center;
-  font-display: center;
   flex-wrap: nowrap;
   border-bottom: solid 1px black;
   width: auto;
@@ -116,7 +110,6 @@ export default {
   width: 10vw;
   min-width: auto;
   text-align: center;
-  font-display: center;
 }
 input {
   min-width: 7rem;
