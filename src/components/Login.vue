@@ -39,6 +39,7 @@
           v-model.trim="email"
           :class="{ invalid: !!error }"
           type="text"
+          maxlength="30"
         />
       </div>
       <div id="password">
@@ -47,6 +48,7 @@
           :class="{ invalid: !!error }"
           v-model.trim="password"
           type="password"
+          maxlength="30"
         />
       </div>
       <p id="error" v-if="!!error">{{ error }}</p>

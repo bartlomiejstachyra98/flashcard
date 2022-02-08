@@ -15,6 +15,7 @@
         v-model.trim="name.val"
         type="text"
         id="name"
+        maxlength="30"
       />
       <p id="falseName" v-if="!name.isVaild">Imię nie może być puste</p>
       <input
@@ -23,6 +24,7 @@
         v-model.trim="email.val"
         :class="{ invalid: !email.isVaild }"
         type="text"
+        maxlength="30"
       />
       <p id="falseEmail" v-if="!email.isVaild">Proszę podać właściwy e-mail</p>
       <input
@@ -31,6 +33,7 @@
         :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
         v-model.trim="password.val"
         type="password"
+        maxlength="30"
       />
       <p id="falsePassword" v-if="!password.isVaild">
         Hasło powinno zawierać więcej niż 6 znaków
@@ -41,6 +44,7 @@
         :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
         v-model.trim="passwordreply.val"
         type="password"
+        maxlength="30"
       />
       <p id="falsePassword" v-if="!passwordreply.isVaild">
         Hasła muszą być identyczne
@@ -107,12 +111,6 @@ export default {
       if (!this.formIsValid) {
         return;
       }
-      // const formData = {
-      //   name: this.name.val,
-      //   email: this.email.val,
-      //   password: this.password.val,
-      // };
-
       this.isLoading = true;
       try {
         await this.$store.dispatch("auth/register", {
