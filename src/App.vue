@@ -27,11 +27,9 @@ export default {
 * {
   box-sizing: border-box;
 }
-
 html {
   font-family: "Roboto", sans-serif;
 }
-
 body {
   margin: 0;
   background-color: #ffe8d6;

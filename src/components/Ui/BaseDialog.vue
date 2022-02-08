@@ -58,7 +58,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 10;
 }
-
 dialog {
   -webkit-animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -72,21 +71,17 @@ dialog {
   overflow: hidden;
   background-color: #ffe8d6;
 }
-
 header {
   background-color: #b7b7a4;
   color: white;
   padding: 1rem;
 }
-
 header h2 {
   margin: 0;
 }
-
 section {
   padding: 1rem;
 }
-
 menu {
   padding: 1rem;
   display: flex;
@@ -100,7 +95,6 @@ menu {
     width: 40rem;
   }
 }
-
 @-webkit-keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(-100px);

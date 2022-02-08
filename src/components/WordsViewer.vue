@@ -22,8 +22,8 @@
         <base-button>+</base-button>
       </form>
     </div>
-    <div class="DisplayWordss">
-      <div class="DisplayWords" v-for="key in wordsData.id" :key="key">
+    <div class="DisplayWords">
+      <div class="DisplayWord" v-for="key in wordsData.id" :key="key">
         <p class="word">{{ wordsData.words[key].word }}</p>
         <p>-</p>
         <p class="word">{{ wordsData.words[key].translation }}</p>
@@ -89,21 +89,21 @@ export default {
 .WordsInTopic {
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
   align-items: center;
+  overflow: auto;
+  position: relative;
+  height: 100%;
 }
-
 .addingWords {
   margin: 1rem;
 }
 .addingWords button {
   min-width: 2rem;
 }
-.DisplayWordss {
+.DisplayWords {
   overflow: auto;
 }
-.DisplayWords {
+.DisplayWord {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -123,16 +123,14 @@ input {
   border: none;
   margin: 0 0.3rem;
 }
-.DisplayWordss::-webkit-scrollbar {
+.DisplayWords::-webkit-scrollbar {
   width: 8px;
 }
-
-.DisplayWordss::-webkit-scrollbar-track {
+.DisplayWords::-webkit-scrollbar-track {
   background-color: #e4e4e4;
   border-radius: 100px;
 }
-
-.DisplayWordss::-webkit-scrollbar-thumb {
+.DisplayWords::-webkit-scrollbar-thumb {
   background-color: #90918e;
   border-radius: 100px;
 }
@@ -144,7 +142,6 @@ input {
     margin: 0;
     padding: 0;
   }
-
   .word {
     width: 30vw;
   }

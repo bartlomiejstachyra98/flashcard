@@ -92,7 +92,6 @@ header {
   display: flex;
   box-shadow: 0 2px 1em gray;
 }
-
 header a {
   text-decoration: none;
   color: #004e98;
@@ -108,7 +107,6 @@ header button {
   border: 1px solid transparent;
   font-size: 1.2rem;
 }
-
 a:active,
 a:hover,
 a.router-link-active,
@@ -117,13 +115,11 @@ button:hover {
   cursor: pointer;
   border: 1px solid #6b705c;
 }
-
 h1 a:hover,
 h1 a:active,
 h1 a.router-link-active {
   border-color: transparent;
 }
-
 header nav {
   width: 90%;
   margin: auto;
@@ -131,7 +127,6 @@ header nav {
   justify-content: space-between;
   align-items: center;
 }
-
 header ul {
   list-style: none;
   margin: 0;
@@ -139,11 +134,9 @@ header ul {
   justify-content: center;
   align-items: center;
 }
-
 li {
   margin: 0 0.5rem;
 }
-
 .mobile-nav {
   display: none;
 }
@@ -159,16 +152,13 @@ li {
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
   }
-
   header ul {
     flex-direction: column;
     padding: 0;
   }
-
   .open {
     display: block !important;
   }
-
   .desktop-nav {
     display: none;
   }
@@ -207,7 +197,6 @@ li {
     padding: 0.5rem;
     border-bottom: 1px solid black;
   }
-
   .toggle-button {
     width: 2rem;
     background: transparent;
@@ -216,7 +205,6 @@ li {
     padding: 0;
     margin: 0.5rem;
   }
-
   .toggle-button:focus {
     outline: none;
   }
@@ -234,7 +222,7 @@ li {
 @-webkit-keyframes slide-right {
   0% {
     -webkit-transform: translateX(-100px);
-    transform: translateX(-100pz);
+    transform: translateX(-100px);
   }
   100% {
     -webkit-transform: translateX(0);

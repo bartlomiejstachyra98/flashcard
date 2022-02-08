@@ -46,6 +46,7 @@ export default {
       incorrectAnswer: false,
       answer: "",
       topic: "",
+      tip: false,
     };
   },
   computed: {
@@ -71,13 +72,17 @@ export default {
   },
   methods: {
     check(userTranslation) {
-      if (userTranslation === this.words[this.activeWord].translation) {
+      if (
+        userTranslation.toUpperCase() ===
+        this.words[this.activeWord].translation.toUpperCase()
+      ) {
         this.incorrectAnswer = "false";
         this.finalScore = null;
-        this.score += 1;
+        if (this.tip === false) this.score += 1;
         this.activeWord += 1;
         this.answer = null;
         userTranslation = null;
+        this.tip = false;
         if (this.activeWord >= this.words.length) {
           this.activeWord = 0;
           this.finalScore = this.score;
@@ -93,6 +98,7 @@ export default {
     },
     showAnswer() {
       if (!this.answer) {
+        this.tip = true;
         this.answer =
           "Tłumaczenie to: " + this.words[this.activeWord].translation;
       } else {

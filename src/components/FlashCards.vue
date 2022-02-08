@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style scoped>
+#card {
+  width: 70vw;
+}
 .flashCard {
   display: flex;
   height: 60vh;
@@ -42,10 +45,10 @@ export default {
 .topicDisplay {
   width: 25%;
 }
-
 .wordsDisplay {
   width: 75%;
 }
+
 @media (max-width: 45rem) {
   #card {
     width: 100vw;

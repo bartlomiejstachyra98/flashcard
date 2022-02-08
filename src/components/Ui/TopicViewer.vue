@@ -124,7 +124,6 @@ export default {
   height: 100%;
   justify-content: space-between;
   align-items: center;
-  /* position: relative; */
 }
 .top {
   width: 100%;
@@ -132,7 +131,6 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  /* position: relative; */
   overflow: auto;
 }
 .desktop_topicDisplay {
@@ -142,17 +140,14 @@ export default {
 .desktop_topicDisplay::-webkit-scrollbar {
   width: 8px;
 }
-
 .desktop_topicDisplay::-webkit-scrollbar-track {
   background-color: #e4e4e4;
   border-radius: 100px;
 }
-
 .desktop_topicDisplay::-webkit-scrollbar-thumb {
   background-color: #90918e;
   border-radius: 100px;
 }
-
 .topic {
   width: 100%;
 }
@@ -208,7 +203,7 @@ export default {
     border-radius: 5px;
     border: none;
     width: 80%;
-    margin: 0 0.5rem;
+    margin-right: 0.5rem;
   }
   .answer_topicDisplay {
     display: unset;
@@ -219,11 +214,9 @@ export default {
     width: 100%;
     margin-bottom: 1rem;
   }
-
   .mobile_topicDisplay button {
     height: 2rem;
   }
-
   .addNewTopic button {
     height: 1.8rem;
     width: auto;
