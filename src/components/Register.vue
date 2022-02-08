@@ -173,7 +173,6 @@ form {
   min-width: 5rem;
   grid-column: span 2;
 }
-
 .invalid {
   border: 1px solid red;
 }
@@ -187,7 +186,6 @@ input {
 @media (max-width: 45rem) {
   #baseCard {
     width: 100%;
-    /* justify-content: center; */
     margin: 0;
     height: calc(100vh - 5rem);
   }

@@ -10,7 +10,7 @@
   padding: 1rem;
   margin: 10vh auto;
   background-color: #ddbea9;
-  min-width: 50vw;
+  min-width: 700px;
   max-width: 80vw;
   min-height: 60vh;
 }

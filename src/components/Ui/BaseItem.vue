@@ -34,7 +34,6 @@ export default {
 input.invaild {
   border: solid 2px red;
 }
-
 form {
   width: 100%;
   display: grid;
