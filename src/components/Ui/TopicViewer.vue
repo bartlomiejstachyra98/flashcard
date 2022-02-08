@@ -90,6 +90,9 @@ export default {
       }
     },
     addNewTopic() {
+      if (this.newTopic === "") {
+        return;
+      }
       this.$store.dispatch("words/addNewTopic", {
         newTopic: this.newTopic,
       });

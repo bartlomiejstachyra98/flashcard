@@ -10,12 +10,14 @@
           placeholder="Słowo"
           v-model="newWord.word"
           type="text"
+          maxlength="30"
         />
         <input
           class="word"
           placeholder="Tłumaczenie"
           v-model="newWord.translation"
           type="text"
+          maxlength="30"
         />
         <base-button>+</base-button>
       </form>
@@ -59,6 +61,9 @@ export default {
   },
   methods: {
     AddNewWord() {
+      if (this.newWord.word === "" || this.newWord.translation === "") {
+        return;
+      }
       this.$store.dispatch("words/addWord", {
         id: this.topic,
         word: {

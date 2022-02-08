@@ -6,6 +6,7 @@
       type="text"
       id="translation"
       ref="translation"
+      maxlength="30"
     />
     <base-button>Dalej</base-button>
     <h4 v-if="incorrectAnswer === 'true'">Podaj właściwą odpowiedź</h4>
