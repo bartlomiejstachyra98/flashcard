@@ -2,7 +2,7 @@
   <div class="topic_viewer">
     <div class="top">
       <h1>Tematy:</h1>
-      <div class="desktop_topicDisplay">
+      <div v-if="topics" class="desktop_topicDisplay">
         <div :class="display" v-for="topic in topics" :key="topic.id">
           <button class="topicButton" @click="selectWords(topic.id)">
             <p>{{ topic.topic }}</p>
@@ -13,6 +13,12 @@
             ></base-button>
           </button>
         </div>
+      </div>
+      <div class="withoutTopics" v-if="!topics[0]">
+        <h4 v-if="this.addTopic">Dodaj nowy temat</h4>
+        <button v-if="!this.addTopic" class="topicButton" @click="redirect">
+          Dodaj Temat
+        </button>
       </div>
       <div class="mobile_topicDisplay">
         <select
@@ -98,6 +104,9 @@ export default {
         this.error = error.message || "someting went wrong";
       }
     },
+    redirect() {
+      this.$router.push("flashcards");
+    },
   },
 };
 </script>
@@ -111,9 +120,11 @@ export default {
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+  align-items: center;
   /* position: relative; */
 }
 .top {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -177,8 +188,14 @@ export default {
 .addNewTopic button {
   width: 30%;
 }
+.withoutTopics {
+  width: 100%;
+}
 
 @media (max-width: 45rem) {
+  .withoutTopics h4 {
+    display: none;
+  }
   .topic {
     display: none;
     margin: 0 2rem;

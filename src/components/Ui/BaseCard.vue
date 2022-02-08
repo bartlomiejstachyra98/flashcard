@@ -10,8 +10,9 @@
   padding: 1rem;
   margin: 10vh auto;
   background-color: #ddbea9;
-  min-width: 60vw;
+  min-width: 50vw;
   max-width: 80vw;
+  min-height: 60vh;
 }
 @media (max-width: 45rem) {
   .card {
