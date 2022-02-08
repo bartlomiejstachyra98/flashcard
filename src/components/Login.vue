@@ -62,7 +62,7 @@ export default {
     return {
       email: "",
       password: "",
-      isLoading: null,
+      isLoading: false,
       error: null,
     };
   },
@@ -93,7 +93,7 @@ export default {
     },
 
     handleError() {
-      this.$router.replace("/");
+      this.$router.replace("/register");
     },
   },
 };
@@ -112,11 +112,9 @@ form {
 }
 #email {
   grid-area: email;
-  width: 40%;
 }
 #password {
   grid-area: password;
-  width: 40%;
 }
 #confirm {
   grid-area: confirm;

@@ -172,7 +172,6 @@ form {
 #confirm {
   grid-area: confirm;
   width: 8rem;
-  justify-self: center;
   min-width: 5rem;
   grid-column: span 2;
 }

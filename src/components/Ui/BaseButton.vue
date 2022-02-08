@@ -18,12 +18,10 @@ export default {
 
 <style scoped>
 button {
-  text-align: center;
   height: 1.8rem;
   border-radius: 5px;
   border: none;
   background-color: #d8d9d6;
-  height: 1.7rem;
 }
 button:hover {
   background-color: #ffae03;
