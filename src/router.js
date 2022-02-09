@@ -9,12 +9,18 @@ import Register from './components/Register.vue'
 import Login from './components/Login.vue'
 import FlashCards from './components/FlashCards.vue'
 import store from './store/index.js';
+import Home from './components/Home.vue'
 const router = createRouter({
     history: createWebHistory(),
 
     routes: [{
             path: '/',
-            redirect: '/answer'
+            redirect: '/home'
+        },
+        {
+            name: 'home',
+            path: '/home',
+            component: Home,
         },
         {
             name: 'answer',

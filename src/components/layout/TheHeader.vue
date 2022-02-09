@@ -1,7 +1,7 @@
 <template>
   <header class="desktop-nav">
     <nav>
-      <h1>FlashCard</h1>
+      <router-link to="/home">FlashCard</router-link>
       <ul>
         <li><router-link to="/answer">Rozwiązuj</router-link></li>
         <li><router-link to="/flashcards">Dodaj słówka</router-link></li>
@@ -87,6 +87,10 @@ export default {
 
 <style scoped>
 header {
+  top: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 105;
   height: 5rem;
   background-color: #b7b7a4;
   display: flex;

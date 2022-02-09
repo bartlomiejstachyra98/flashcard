@@ -70,6 +70,8 @@ dialog {
   margin: 0;
   overflow: hidden;
   background-color: #ffe8d6;
+  left: calc(50% - 20rem);
+  width: 40rem;
 }
 header {
   background-color: #b7b7a4;
@@ -89,10 +91,9 @@ menu {
   margin: 0;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 45rem) {
   dialog {
-    left: calc(50% - 20rem);
-    width: 40rem;
+    margin: auto;
   }
 }
 @-webkit-keyframes slide-bottom {
