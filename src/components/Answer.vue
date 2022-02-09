@@ -123,7 +123,7 @@ export default {
 }
 
 #select_topic {
-  width: 40vw;
+  width: 50vw;
   height: 50vh;
 }
 #card {
@@ -134,7 +134,7 @@ export default {
     "button translation"
     "score score";
   height: 40vh;
-  width: 40vw;
+  width: 50vw;
   grid-template-columns: 50% 50%;
   grid-row-gap: 1rem;
 }
