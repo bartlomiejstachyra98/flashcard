@@ -33,17 +33,25 @@
       </div>
     </base-card>
     <h1 id="title">Zobacz jak wygląda nasz serwis!</h1>
-    <img id="img1" class="img left" src="../img/TopicDisplay.jpg" />
-    <div id="desc1" class="text">
+    <div class="text">
       <h3>
         Zdjęcia pokazją wygląd komponentu osbługującego wybór tematy fiszek,
         które chcesz rozwiązywać. Poprzez kliknięcie w temat przechodzimy do
         rozwiązywania
       </h3>
     </div>
-
-    <img id="img2" class="img left" src="../img/AnswerDisplay.jpg" />
-    <div id="desc2" class="text">
+    <img
+      id="img1"
+      ref="sectionFirst"
+      class="img left sectionFirst responsive"
+      src="../img/TopicDisplay.jpg"
+    />
+    <img
+      id="img4"
+      class="img right sectionFirst responsive"
+      src="../img/TopicMobileDisplay.jpg"
+    />
+    <div id="desc2" class="text sectionSecond">
       <h3>
         Po wyborze tematu przechodzimy do rozwiązywania. Jest to bajecznie
         proste, wystarczy wpisać swoją odpowiedź i kliknąć dalej. Jeśli
@@ -52,9 +60,18 @@
         słowa w temacie dostaniemy wynik, który powie nam ile słów znaliśmy
       </h3>
     </div>
+    <img
+      ref="sectionSecond"
+      class="img left sectionSecond responsive"
+      src="../img/AnswerDisplay.jpg"
+    />
 
-    <img id="img3" class="img left" src="../img/FlashcardsDisplay.jpg" />
-    <div id="desc3" class="text">
+    <img
+      id="img5"
+      class="img right sectionSecond responsive"
+      src="../img/AnswerMobileDisplay.jpg"
+    />
+    <div id="desc3" class="text sectionThird">
       <h3>
         Aplikacja polega na samodzielnym dodwaniu Tematów oraz słow i tłumaczeń.
         Taki model pozwala użytkownikowi na perfekcyjne dopasowanie zawartości
@@ -63,13 +80,49 @@
       </h3>
     </div>
 
-    <img id="img4" class="img right" src="../img/TopicMobileDisplay.jpg" />
-
-    <img id="img5" class="img right" src="../img/AnswerMobileDisplay.jpg" />
-
-    <img id="img6" class="img right" src="../img/FlashcardsMobileDisplay.jpg" />
+    <img
+      id="img3"
+      class="img left sectionThird responsive"
+      ref="sectionThird"
+      src="../img/FlashcardsDisplay.jpg"
+    />
+    <img
+      id="img6"
+      class="img right sectionThird responsive"
+      src="../img/FlashcardsMobileDisplay.jpg"
+    />
   </div>
 </template>
+<script>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+export default {
+  mounted() {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".sectionFirst", {
+      scrollTrigger: { trigger: this.$refs.sectionFirst, start: "top 60%" },
+      keyframes: [
+        { opacity: 0, duration: 0 },
+        { opacity: 100, duration: 100 },
+      ],
+    });
+    gsap.to(".sectionSecond", {
+      scrollTrigger: { trigger: this.$refs.sectionSecond, start: "top 60%" },
+      keyframes: [
+        { opacity: 0, duration: 0 },
+        { opacity: 100, duration: 100 },
+      ],
+    });
+    gsap.to(".sectionThird", {
+      scrollTrigger: { trigger: this.$refs.sectionThird, start: "top 60%" },
+      keyframes: [
+        { opacity: 0, duration: 0 },
+        { opacity: 100, duration: 100 },
+      ],
+    });
+  },
+};
+</script>
 <style scoped>
 .main {
   color: #ce7b91;
@@ -98,7 +151,7 @@
   height: 100%;
 }
 .responsive {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 .BaseInfo {
@@ -187,24 +240,25 @@
 
   grid-row: 6;
 }
-@-webkit-keyframes slide-right {
-  0% {
-    -webkit-transform: translateX(-100px);
-    transform: translateX(-100px);
+@media (max-width: 1300px) {
+  .baseCardContent {
+    flex-direction: column;
+    align-items: center;
   }
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+  .baseCardContent > div {
+    width: 100%;
   }
-}
-@keyframes slide-right {
-  0% {
-    -webkit-transform: translateX(-100px);
-    transform: translateX(-100px);
+  .main {
+    display: flex;
+    flex-flow: column;
+    justify-items: center;
+    margin: auto;
   }
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+  .text {
+    margin: 0 10vw;
+  }
+  .card {
+    height: auto;
   }
 }
 </style>
