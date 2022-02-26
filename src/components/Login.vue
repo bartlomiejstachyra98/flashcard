@@ -1,12 +1,4 @@
 <template>
-  <base-dialog
-    :show="isLoading"
-    @close="handleError"
-    title="Logowanie..."
-    fixed
-  >
-    <p>Logowanie trwa, proszę czekać</p>
-  </base-dialog>
   <base-dialog :show="display" @close="handleError">
     <h1>Logowanie</h1>
     <form @submit.prevent="login">
@@ -64,7 +56,6 @@ export default {
     return {
       email: "",
       password: "",
-      isLoading: false,
       error: null,
     };
   },
@@ -79,7 +70,6 @@ export default {
   },
   methods: {
     async login() {
-      this.isLoading = true;
       try {
         await this.$store.dispatch("auth/login", {
           email: this.email,
@@ -88,10 +78,10 @@ export default {
       } catch (err) {
         this.error = err.message || "Podaj poprawne dane logowania";
       }
-      this.isLoading = false;
       if (this.$store.getters["auth/isAuthenticated"]) {
         this.handleError();
       }
+      this.$router.push("answer");
     },
 
     handleError() {

@@ -120,6 +120,7 @@ export default {
       } catch (err) {
         this.error = err.message || "Błąd rejestracji";
       }
+      this.$router.push("answer");
       this.isLoading = false;
     },
     handleError() {
