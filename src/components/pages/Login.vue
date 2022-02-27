@@ -49,7 +49,7 @@
   </div>
 </template>
 <script>
-import BaseDialog from "./Ui/BaseDialog.vue";
+import BaseDialog from "../Ui/BaseDialog.vue";
 export default {
   components: { BaseDialog },
   data() {

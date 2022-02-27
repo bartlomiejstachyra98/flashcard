@@ -54,8 +54,8 @@
   </base-card>
 </template>
 <script>
-import BaseCard from "./Ui/BaseCard.vue";
-import BaseDialog from "./Ui/BaseDialog.vue";
+import BaseCard from "../Ui/BaseCard.vue";
+import BaseDialog from "../Ui/BaseDialog.vue";
 export default {
   components: { BaseCard, BaseDialog },
   data() {
