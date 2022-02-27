@@ -4,12 +4,13 @@ import {
 
 } from 'vue-router';
 
-import Answer from './components/Answer.vue'
-import Register from './components/Register.vue'
-import Login from './components/Login.vue'
-import FlashCards from './components/FlashCards.vue'
+
+import Answer from './components/pages/Answer.vue'
+import Register from './components/pages/Register.vue'
+import Login from './components/pages/Login.vue'
+import FlashCards from './components/pages/FlashCards.vue'
 import store from './store/index.js';
-import Home from './components/Home.vue'
+import Home from './components/pages/Home.vue'
 const router = createRouter({
     history: createWebHistory(),
 

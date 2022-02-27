@@ -76,6 +76,7 @@ export default {
     logout() {
       this.$store.dispatch("auth/logout");
       this.isOpen = !this.isOpen;
+      this.$router.push("home");
     },
     openCloseMenu() {
       this.isOpen = !this.isOpen;

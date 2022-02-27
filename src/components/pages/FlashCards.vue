@@ -16,8 +16,8 @@
   </body>
 </template>
 <script>
-import TopicViewer from "./Ui/TopicViewer.vue";
-import WordsViewer from "./WordsViewer.vue";
+import TopicViewer from "./elements/TopicViewer.vue";
+import WordsViewer from "./elements/WordsViewer.vue";
 
 export default {
   components: { TopicViewer, WordsViewer },

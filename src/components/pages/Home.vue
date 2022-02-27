@@ -28,7 +28,7 @@
           </div>
         </div>
         <div img2>
-          <img src="../img/LearnPhoto.jpg" class="responsive" alt="" />
+          <img src="../../img/LearnPhoto.jpg" class="responsive" alt="" />
         </div>
       </div>
     </base-card>
@@ -44,12 +44,12 @@
       id="img1"
       ref="sectionFirst"
       class="img left sectionFirst responsive"
-      src="../img/TopicDisplay.jpg"
+      src="../../img/TopicDisplay.jpg"
     />
     <img
       id="img4"
       class="img right sectionFirst responsive"
-      src="../img/TopicMobileDisplay.jpg"
+      src="../../img/TopicMobileDisplay.jpg"
     />
     <div id="desc2" class="text sectionSecond">
       <h3>
@@ -63,13 +63,13 @@
     <img
       ref="sectionSecond"
       class="img left sectionSecond responsive"
-      src="../img/AnswerDisplay.jpg"
+      src="../../img/AnswerDisplay.jpg"
     />
 
     <img
       id="img5"
       class="img right sectionSecond responsive"
-      src="../img/AnswerMobileDisplay.jpg"
+      src="../../img/AnswerMobileDisplay.jpg"
     />
     <div id="desc3" class="text sectionThird">
       <h3>
@@ -84,12 +84,12 @@
       id="img3"
       class="img left sectionThird responsive"
       ref="sectionThird"
-      src="../img/FlashcardsDisplay.jpg"
+      src="../../img/FlashcardsDisplay.jpg"
     />
     <img
       id="img6"
       class="img right sectionThird responsive"
-      src="../img/FlashcardsMobileDisplay.jpg"
+      src="../../img/FlashcardsMobileDisplay.jpg"
     />
   </div>
 </template>
@@ -212,6 +212,7 @@ export default {
 }
 #img3 {
   grid-column: 1/2;
+  grid-row: 5;
 }
 #desc3 {
   grid-column: 2/3;
@@ -222,7 +223,6 @@ export default {
 }
 #desc4 {
   grid-column: 1/2;
-
   grid-row: 5;
 }
 #img5 {
@@ -234,11 +234,12 @@ export default {
 }
 #img6 {
   grid-column: 3/4;
+
+  grid-row: 5;
 }
 #desc6 {
   grid-column: 1/2;
-
-  grid-row: 6;
+  grid-row: 5;
 }
 @media (max-width: 1300px) {
   .baseCardContent {

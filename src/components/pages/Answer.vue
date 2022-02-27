@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import BaseItem from "./Ui/BaseItem.vue";
-import BaseDialog from "./Ui/BaseDialog.vue";
-import TopicViewer from "./Ui/TopicViewer.vue";
+import BaseItem from "../Ui/BaseItem.vue";
+import BaseDialog from "../Ui/BaseDialog.vue";
+import TopicViewer from "./elements/TopicViewer.vue";
 
 export default {
   components: { BaseItem, BaseDialog, TopicViewer },
