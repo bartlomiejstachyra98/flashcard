@@ -61,11 +61,7 @@ export default {
   },
   computed: {
     display() {
-      if (window.innerWidth < 720) {
-        return false;
-      } else {
-        return true;
-      }
+      return window.innerWidth < 720 ? false : true;
     },
   },
   methods: {

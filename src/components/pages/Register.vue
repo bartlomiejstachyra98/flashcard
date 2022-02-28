@@ -10,7 +10,7 @@
     <h2>Dołącz do nas juz dzisiaj!</h2>
     <form @submit.prevent="submitRegister">
       <input
-        placeholder="Imie"
+        placeholder="Imię"
         :class="{ invalid: !name.isVaild }"
         v-model.trim="name.val"
         type="text"
@@ -30,7 +30,7 @@
       <input
         id="password"
         placeholder="Hasło"
-        :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
+        :class="{ invalid: !password.isVaild || !passwordReply.isVaild }"
         v-model.trim="password.val"
         type="password"
         maxlength="30"
@@ -39,14 +39,14 @@
         Hasło powinno zawierać więcej niż 6 znaków
       </p>
       <input
-        id="replypassword"
+        id="replyPassword"
         placeholder="Powtórz hasło"
-        :class="{ invalid: !password.isVaild || !passwordreply.isVaild }"
-        v-model.trim="passwordreply.val"
+        :class="{ invalid: !password.isVaild || !passwordReply.isVaild }"
+        v-model.trim="passwordReply.val"
         type="password"
         maxlength="30"
       />
-      <p id="falsePassword" v-if="!passwordreply.isVaild">
+      <p id="diffrentPass" v-if="!passwordReply.isVaild">
         Hasła muszą być identyczne
       </p>
       <base-button id="confirm">Zarejestruj</base-button>
@@ -72,7 +72,7 @@ export default {
         val: "",
         isVaild: true,
       },
-      passwordreply: {
+      passwordReply: {
         val: "",
         isVaild: true,
       },
@@ -95,14 +95,14 @@ export default {
       }
       if (
         this.password.val === "" ||
-        this.passwordreply.val === "" ||
+        this.passwordReply.val === "" ||
         this.password.val.length < 6
       ) {
         this.password.isVaild = false;
         this.formIsValid = false;
       }
-      if (this.password.val !== this.passwordreply.val) {
-        this.passwordreply.isVaild = false;
+      if (this.password.val !== this.passwordReply.val) {
+        this.passwordReply.isVaild = false;
         this.formIsValid = false;
       }
     },
@@ -139,8 +139,9 @@ form {
   grid-template-areas:
     "name email"
     "falseName falseEmail"
-    "password replypassword"
+    "password replyPassword"
     "falsePassword falsePassword"
+    "diffrentPass diffrentPass"
     "confirm confirm";
   grid-gap: 5px;
   justify-items: center;
@@ -162,11 +163,14 @@ form {
 #password {
   grid-area: password;
 }
-#replypassword {
-  grid-area: replypassword;
+#replyPassword {
+  grid-area: replyPassword;
 }
 #falsePassword {
   grid-area: falsePassword;
+}
+#diffrentPass {
+  grid-area: diffrentPass;
 }
 #confirm {
   grid-area: confirm;

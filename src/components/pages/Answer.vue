@@ -8,7 +8,7 @@
     title="Gratulacje! Ukończyłeś lekcje!"
     @close="handleError"
   >
-    <p>Twój wynik to: {{ finalScore }}/{{ wordLeft }}</p></base-dialog
+    <p>Twój wynik to: {{ finalScore }}/{{ wordAmount }}</p></base-dialog
   >
   <base-card id="withoutWords" v-if="!!topic && !!words.length == 0">
     <h1>Brak fiszek w wybranym temacie!</h1>
@@ -26,7 +26,7 @@
       >Pokaż tłumaczenie</base-button
     >
     <h3 class="translation">{{ answer }}</h3>
-    <h2 class="score">Wynik {{ score }}/{{ wordLeft }}:</h2>
+    <h2 class="score">Wynik: {{ score }}/{{ wordAmount }}</h2>
   </base-card>
 </template>
 
@@ -66,7 +66,7 @@ export default {
     displayWord() {
       return this.words[this.activeWord].word;
     },
-    wordLeft() {
+    wordAmount() {
       return this.words.length;
     },
   },

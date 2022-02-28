@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     selectWords(topic) {
-      if (topic == false) {
+      if (topic === false) {
         this.$emit("select-words", event.target.value);
       } else {
         this.$emit("select-words", topic);
@@ -104,7 +104,7 @@ export default {
       try {
         await this.$store.dispatch("words/fetchTopics");
       } catch (error) {
-        this.error = error.message || "someting went wrong";
+        this.error = error.message || "Coś poszło nie tak... :(";
       }
     },
     redirect() {
