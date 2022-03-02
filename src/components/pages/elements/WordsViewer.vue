@@ -1,6 +1,6 @@
 <template>
   <h1 v-if="!topic">Wybierz temat, aby wyświetlić słowa</h1>
-  <div class="WordsInTopic" v-if="topic">
+  <div class="wordsInTopic" v-if="topic">
     <h1>Słowa w temacie</h1>
 
     <div class="addingWords">
@@ -22,8 +22,8 @@
         <base-button>+</base-button>
       </form>
     </div>
-    <div class="DisplayWords">
-      <div class="DisplayWord" v-for="key in wordsData.id" :key="key">
+    <div class="displayWords">
+      <div class="displayWord" v-for="key in wordsData.id" :key="key">
         <p class="word">{{ wordsData.words[key].word }}</p>
         <p>-</p>
         <p class="word">{{ wordsData.words[key].translation }}</p>
@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style scoped>
-.WordsInTopic {
+.wordsInTopic {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,10 +100,10 @@ export default {
 .addingWords button {
   min-width: 2rem;
 }
-.DisplayWords {
+.displayWords {
   overflow: auto;
 }
-.DisplayWord {
+.displayWord {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -123,14 +123,14 @@ input {
   border: none;
   margin: 0 0.3rem;
 }
-.DisplayWords::-webkit-scrollbar {
+.displayWords::-webkit-scrollbar {
   width: 8px;
 }
-.DisplayWords::-webkit-scrollbar-track {
+.displayWords::-webkit-scrollbar-track {
   background-color: #e4e4e4;
   border-radius: 100px;
 }
-.DisplayWords::-webkit-scrollbar-thumb {
+.displayWords::-webkit-scrollbar-thumb {
   background-color: #90918e;
   border-radius: 100px;
 }

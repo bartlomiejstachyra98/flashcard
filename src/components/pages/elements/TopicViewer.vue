@@ -16,7 +16,7 @@
       </div>
       <div class="withoutTopics" v-if="!topics[0]">
         <h4 v-if="this.addTopic">Dodaj nowy temat</h4>
-        <button v-if="!this.addTopic" class="topicButton" @click="redirect">
+        <button v-else class="topicButton" @click="redirect">
           Dodaj Temat
         </button>
       </div>

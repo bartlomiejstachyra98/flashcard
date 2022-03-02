@@ -88,10 +88,14 @@ export default {
       if (this.name.val === "") {
         this.name.isVaild = false;
         this.formIsValid = false;
+      } else {
+        this.name.isVaild = true;
       }
       if (this.email.val === "" || !this.re.test(this.email.val)) {
         this.email.isVaild = false;
         this.formIsValid = false;
+      } else {
+        this.email.isVaild = true;
       }
       if (
         this.password.val === "" ||
@@ -100,10 +104,14 @@ export default {
       ) {
         this.password.isVaild = false;
         this.formIsValid = false;
+      } else {
+        this.password.isVaild = true;
       }
       if (this.password.val !== this.passwordReply.val) {
         this.passwordReply.isVaild = false;
         this.formIsValid = false;
+      } else {
+        this.passwordReply.isVaild = true;
       }
     },
     async submitRegister() {
