@@ -2,6 +2,7 @@
   <form @submit.prevent="saveInput">
     <h3 class="word">{{ words }}</h3>
     <input
+      autocomplete="off"
       :class="{ invaild: incorrectAnswer === 'true' }"
       type="text"
       id="translation"

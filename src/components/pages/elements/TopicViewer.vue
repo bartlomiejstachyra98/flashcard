@@ -16,7 +16,7 @@
       </div>
       <div class="withoutTopics" v-if="!topics[0]">
         <h4 v-if="this.addTopic">Dodaj nowy temat</h4>
-        <button v-if="!this.addTopic" class="topicButton" @click="redirect">
+        <button v-else class="topicButton" @click="redirect">
           Dodaj Temat
         </button>
       </div>
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     selectWords(topic) {
-      if (topic == false) {
+      if (topic === false) {
         this.$emit("select-words", event.target.value);
       } else {
         this.$emit("select-words", topic);
@@ -104,7 +104,7 @@ export default {
       try {
         await this.$store.dispatch("words/fetchTopics");
       } catch (error) {
-        this.error = error.message || "someting went wrong";
+        this.error = error.message || "Coś poszło nie tak... :(";
       }
     },
     redirect() {

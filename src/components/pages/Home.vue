@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <base-card class="BaseInfo">
+    <base-card class="baseInfo">
       <div class="baseCardContent">
         <div>
           <ul>
@@ -23,33 +23,39 @@
             </li>
           </ul>
           <div class="joinButtons">
-            <base-button>Zaloguj</base-button>
-            <base-button>Dołącz do nas</base-button>
+            <base-button @click="login">Zaloguj</base-button>
+            <base-button @click="register">Dołącz do nas</base-button>
           </div>
         </div>
-        <div img2>
+        <div>
           <img src="../../img/LearnPhoto.jpg" class="responsive" alt="" />
         </div>
       </div>
     </base-card>
     <h1 id="title">Zobacz jak wygląda nasz serwis!</h1>
-    <div class="text">
+    <img
+      id="topicDisplay"
+      ref="sectionFirst"
+      class="img left sectionFirst responsive"
+      src="../../img/TopicDisplay.jpg"
+    />
+    <div class="text sectionFirst" id="topicDesc">
       <h3>
-        Zdjęcia pokazją wygląd komponentu osbługującego wybór tematy fiszek,
+        Zdjęcia pokazją wygląd komponentu osbługującego wybór tematu fiszek,
         które chcesz rozwiązywać. Poprzez kliknięcie w temat przechodzimy do
         rozwiązywania
       </h3>
     </div>
     <img
-      id="img1"
-      ref="sectionFirst"
-      class="img left sectionFirst responsive"
-      src="../../img/TopicDisplay.jpg"
-    />
-    <img
-      id="img4"
+      id="topicMobileDisplay"
       class="img right sectionFirst responsive"
       src="../../img/TopicMobileDisplay.jpg"
+    />
+    <img
+      id="AnswerDisplay"
+      ref="sectionSecond"
+      class="img left sectionSecond responsive"
+      src="../../img/AnswerDisplay.jpg"
     />
     <div id="desc2" class="text sectionSecond">
       <h3>
@@ -61,33 +67,26 @@
       </h3>
     </div>
     <img
-      ref="sectionSecond"
-      class="img left sectionSecond responsive"
-      src="../../img/AnswerDisplay.jpg"
-    />
-
-    <img
-      id="img5"
+      id="AnswerMobileDisplay"
       class="img right sectionSecond responsive"
       src="../../img/AnswerMobileDisplay.jpg"
     />
-    <div id="desc3" class="text sectionThird">
+    <img
+      id="flashcardsDisplay"
+      class="img left sectionThird responsive"
+      ref="sectionThird"
+      src="../../img/FlashcardsDisplay.jpg"
+    />
+    <div id="flashcardsDesc" class="text sectionThird">
       <h3>
-        Aplikacja polega na samodzielnym dodwaniu Tematów oraz słow i tłumaczeń.
+        Aplikacja polega na samodzielnym dodwaniu tematów oraz słów i tłumaczeń.
         Taki model pozwala użytkownikowi na perfekcyjne dopasowanie zawartości
         do poziomu. Można dowolnie konfigurować oraz zmieniać zawartość tematów
         w każym momencie
       </h3>
     </div>
-
     <img
-      id="img3"
-      class="img left sectionThird responsive"
-      ref="sectionThird"
-      src="../../img/FlashcardsDisplay.jpg"
-    />
-    <img
-      id="img6"
+      id="flashcardsMobileDisplay"
       class="img right sectionThird responsive"
       src="../../img/FlashcardsMobileDisplay.jpg"
     />
@@ -121,8 +120,17 @@ export default {
       ],
     });
   },
+  methods: {
+    login() {
+      this.$router.replace("login");
+    },
+    register() {
+      this.$router.replace("register");
+    },
+  },
 };
 </script>
+
 <style scoped>
 .main {
   color: #ce7b91;
@@ -130,31 +138,23 @@ export default {
   margin: 7rem 5rem 5rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: calc(100vh -5rem);
-  /* background-color: #6b705c; */
   align-items: center;
   justify-items: center;
   justify-content: center;
   grid-row-gap: 4rem;
   grid-column-gap: 4rem;
 }
-/* .text {
-  transform: translateY(-5vh);
-} */
 .img {
   border: 1.5px solid black;
   border-radius: 4px;
   padding: 8px;
   background: white;
 }
-.img2 {
-  width: 100%;
-  height: 100%;
-}
 .responsive {
   max-width: 100%;
   height: auto;
 }
-.BaseInfo {
+.baseInfo {
   margin-top: 5vh;
   margin-bottom: 0;
   width: 100vw;
@@ -176,7 +176,6 @@ export default {
   align-items: center;
   width: 50%;
 }
-
 .joinButtons button {
   height: 5rem;
   margin: 1rem;
@@ -186,59 +185,43 @@ export default {
   font-size: 1.3rem;
   font-weight: bold;
 }
-
 #title {
   grid-column: span 3;
   grid-row: 2;
 }
-/* .right {
-  transform: translateY(10vh);
-} */
-#img1 {
+#topicDisplay {
   grid-column: 1/2;
   grid-row: 3;
 }
-#desc1 {
+#topicDesc {
   grid-row: 3;
   grid-column: 2/3;
 }
-#img2 {
-  grid-row: 4;
-  grid-column: 1/2;
-}
-#desc2 {
-  grid-row: 4;
-  grid-column: 2/3;
-}
-#img3 {
-  grid-column: 1/2;
-  grid-row: 5;
-}
-#desc3 {
-  grid-column: 2/3;
-}
-#img4 {
+#topicMobileDisplay {
   grid-row: 3;
   grid-column: 3/4;
 }
-#desc4 {
+#AnswerDisplay {
+  grid-row: 4;
   grid-column: 1/2;
-  grid-row: 5;
 }
-#img5 {
+#answerDesc {
+  grid-row: 4;
+  grid-column: 2/3;
+}
+#answerMobileDisplay {
   grid-column: 3/4;
   grid-row: 4;
 }
-#desc5 {
-  grid-column: 2/3;
-}
-#img6 {
-  grid-column: 3/4;
-
+#flashcardsDisplay {
+  grid-column: 1/2;
   grid-row: 5;
 }
-#desc6 {
-  grid-column: 1/2;
+#flashcardsDesc {
+  grid-column: 2/3;
+}
+#flashcardsMobileDisplay {
+  grid-column: 3/4;
   grid-row: 5;
 }
 @media (max-width: 1300px) {
