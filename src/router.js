@@ -50,6 +50,10 @@ const router = createRouter({
             meta: {
                 requiresAuth: true
             }
+        },
+        {
+            path: '/:notFound(.*)',
+            component: Home
         }
     ],
     linkActiveClass: 'active',
