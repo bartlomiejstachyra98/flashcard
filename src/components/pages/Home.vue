@@ -36,7 +36,7 @@
     <img
       id="topicDisplay"
       ref="sectionFirst"
-      class="img left sectionFirst responsive"
+      class="img left sectionFirst"
       src="../../img/TopicDisplay.jpg"
     />
     <div class="text sectionFirst" id="topicDesc">
@@ -48,13 +48,13 @@
     </div>
     <img
       id="topicMobileDisplay"
-      class="img right sectionFirst responsive"
+      class="img right sectionFirst"
       src="../../img/TopicMobileDisplay.jpg"
     />
     <img
       id="AnswerDisplay"
       ref="sectionSecond"
-      class="img left sectionSecond responsive"
+      class="img left sectionSecond"
       src="../../img/AnswerDisplay.jpg"
     />
     <div id="desc2" class="text sectionSecond">
@@ -68,12 +68,12 @@
     </div>
     <img
       id="AnswerMobileDisplay"
-      class="img right sectionSecond responsive"
+      class="img right sectionSecond"
       src="../../img/AnswerMobileDisplay.jpg"
     />
     <img
       id="flashcardsDisplay"
-      class="img left sectionThird responsive"
+      class="img left sectionThird"
       ref="sectionThird"
       src="../../img/FlashcardsDisplay.jpg"
     />
@@ -87,7 +87,7 @@
     </div>
     <img
       id="flashcardsMobileDisplay"
-      class="img right sectionThird responsive"
+      class="img right sectionThird"
       src="../../img/FlashcardsMobileDisplay.jpg"
     />
   </div>
@@ -135,9 +135,8 @@ export default {
 .main {
   color: #ce7b91;
   display: grid;
-  margin: 7rem 5rem 5rem;
+  margin: 15vh auto;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: calc(100vh -5rem);
   align-items: center;
   justify-items: center;
   justify-content: center;
@@ -236,7 +235,7 @@ export default {
     display: flex;
     flex-flow: column;
     justify-items: center;
-    margin: auto;
+    margin: 15vh auto;
   }
   .text {
     margin: 0 10vw;
